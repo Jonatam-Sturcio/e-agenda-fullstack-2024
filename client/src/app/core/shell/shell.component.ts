@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { LinkNavegacao } from './models/link-navegacao.model';
+import { UsuarioTokenViewModel } from '../auth/models/auth.models';
 @Component({
   selector: 'app-shell',
   standalone: true,
@@ -30,6 +31,9 @@ import { LinkNavegacao } from './models/link-navegacao.model';
   styleUrl: './shell.component.scss',
 })
 export class ShellComponent {
+  @Input() usuarioAutenticado?: UsuarioTokenViewModel;
+  @Output() logout: EventEmitter<void>;
+
   links: LinkNavegacao[] = [
     {
       titulo: 'Login',
@@ -41,6 +45,8 @@ export class ShellComponent {
       icone: 'person_add',
       rota: '/registro',
     },
+  ];
+  authLinks: LinkNavegacao[] = [
     {
       titulo: 'Dashboard',
       icone: 'home',
@@ -55,5 +61,10 @@ export class ShellComponent {
         map((result) => result.matches),
         shareReplay()
       );
+    this.logout = new EventEmitter();
+  }
+
+  logoutEfetuado() {
+    this.logout.emit();
   }
 }
