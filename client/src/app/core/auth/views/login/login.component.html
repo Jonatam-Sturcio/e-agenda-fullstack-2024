@@ -12,6 +12,7 @@
             matInput
             autocomplete="username"
             placeholder="Ex: JoaoSilva12"
+            [maxlength]="30"
           />
           <mat-icon matSuffix color="primary">mail</mat-icon>
           <mat-error class="text-white" *ngIf="login?.invalid">
@@ -20,6 +21,9 @@
             >
             <span *ngIf="login?.errors?.['minlength']"
               >O login deve conter ao menos 3 caracteres.</span
+            >
+            <span *ngIf="login?.errors?.['maxlength']"
+              >O login deve conter menos de 30 caracteres.</span
             >
           </mat-error>
         </mat-form-field>
@@ -39,6 +43,9 @@
             >
             <span *ngIf="senha?.errors?.['minlength']"
               >A senha deve conter ao menos 6 caracteres.</span
+            >
+            <span *ngIf="login?.errors?.['maxlength']"
+              >O login deve conter menos de 30 caracteres.</span
             >
           </mat-error>
         </mat-form-field>

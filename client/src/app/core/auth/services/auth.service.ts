@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { map, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
+  AutenticarUsuarioViewModel,
   RegistrarUsuarioViewModel,
   TokenViewModel,
 } from '../models/auth.models';
@@ -20,6 +21,14 @@ export class AuthService {
 
     return this.http
       .post<TokenViewModel>(urlCompleto, registro)
+      .pipe(map(this.processarDados));
+  }
+
+  public login(loginUsuario: AutenticarUsuarioViewModel) {
+    const urlCompleto = `${this.apiUrl}/contas/autenticar`;
+
+    return this.http
+      .post<TokenViewModel>(urlCompleto, loginUsuario)
       .pipe(map(this.processarDados));
   }
 
