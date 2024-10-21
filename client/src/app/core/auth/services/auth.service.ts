@@ -32,6 +32,15 @@ export class AuthService {
       .pipe(map(this.processarDados));
   }
 
+  public logout() {
+    const urlCompleto = `${this.apiUrl}/contas/sair`;
+
+    return this.http.post(urlCompleto, {});
+  }
+  public validarExpiracaoToken(dataExpiracaoToken: Date) {
+    return dataExpiracaoToken > new Date();
+  }
+
   private processarDados(resposta: any): TokenViewModel {
     if (resposta.sucesso) return resposta.dados;
 

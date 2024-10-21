@@ -25,6 +25,7 @@ import {
 } from '../../models/auth.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { AuthService } from '../../services/auth.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private localStorageService: LocalStorageService
   ) {
     this.form = this.fb.group({
       login: [
@@ -88,7 +90,7 @@ export class LoginComponent {
 
     this.authService.login(loginUsuario).subscribe((res) => {
       this.usuarioService.logarUsuario(res.usuario);
-
+      this.localStorageService.salvarTokenAutenticacao(res);
       this.router.navigate(['/dashboard']);
     });
   }
