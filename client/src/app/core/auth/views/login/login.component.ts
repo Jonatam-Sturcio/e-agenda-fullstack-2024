@@ -86,6 +86,9 @@ export class LoginComponent {
   }
   public entrar() {
     if (this.form.invalid) {
+      this.notificacaoService.aviso(
+        'Por favor, corrija os campos inválidos do formulário.'
+      );
       return;
     }
 
