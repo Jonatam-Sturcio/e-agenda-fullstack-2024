@@ -22,7 +22,7 @@ export class UsuarioService {
     this.usuarioAutenticadoSubject.next(usuario);
   }
 
-  public logout() {
+  public logout(): void {
     this.usuarioAutenticadoSubject.next(undefined);
   }
 }

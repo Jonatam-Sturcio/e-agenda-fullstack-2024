@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth.service';
 import { RegistrarUsuarioViewModel } from '../../models/auth.models';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
@@ -20,11 +20,12 @@ import { UsuarioService } from '../../services/usuario.service';
   standalone: true,
   imports: [
     NgIf,
+    RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatInputModule,
   ],
   templateUrl: './registro.component.html',
 })
@@ -48,12 +49,15 @@ export class RegistroComponent {
   get nome() {
     return this.form.get('nome');
   }
+
   get login() {
     return this.form.get('login');
   }
+
   get email() {
     return this.form.get('email');
   }
+
   get senha() {
     return this.form.get('senha');
   }
@@ -65,6 +69,7 @@ export class RegistroComponent {
 
     this.authService.registrar(registro).subscribe((res) => {
       this.usuarioService.logarUsuario(res.usuario);
+
       this.router.navigate(['/dashboard']);
     });
   }

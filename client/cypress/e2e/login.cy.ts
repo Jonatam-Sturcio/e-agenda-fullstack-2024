@@ -8,7 +8,7 @@ describe('Processo de Login do Usuário', () => {
   });
 
   it('Deve autenticar usuario corretamente e redirecionar', () => {
-    cy.get('[data-cy=login').type('Teste');
+    cy.get('[data-cy=login').type('testilson');
 
     cy.get('[data-cy=senha]').type('Teste@123');
 
@@ -30,7 +30,7 @@ describe('Processo de Login do Usuário', () => {
   });
 
   it('Deve notificar sobre senha vazia', () => {
-    cy.get('[data-cy=login').type('Teste2');
+    cy.get('[data-cy=login').type('testilson');
 
     cy.get('[data-cy=submit]').click();
 

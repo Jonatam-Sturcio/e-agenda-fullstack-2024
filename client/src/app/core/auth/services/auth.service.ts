@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
   AutenticarUsuarioViewModel,
@@ -10,7 +10,7 @@ import {
 
 @Injectable()
 export class AuthService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -37,8 +37,9 @@ export class AuthService {
 
     return this.http.post(urlCompleto, {});
   }
-  public validarExpiracaoToken(dataExpiracaoToken: Date) {
-    return dataExpiracaoToken > new Date();
+
+  public validarExpiracaoToken(dataExpiracaoToken: Date): boolean {
+    return dataExpiracaoToken > new Date(); // obtém a data de agora
   }
 
   private processarDados(resposta: any): TokenViewModel {
