@@ -22,10 +22,35 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class DashboardComponent {
   itensRedirect: ItemRedirectDashboard[] = [
-    { rota: '/contatos', texto: 'Contatos', icone: 'people' },
-    { rota: '/compromissos', texto: 'Compromissos', icone: 'event' },
-    { rota: '/categorias', texto: 'Categorias', icone: 'bookmarks' },
-    { rota: '/despesas', texto: 'Despesas', icone: 'currency_exchange' },
-    { rota: '/tarefas', texto: 'Tarefas', icone: 'task_alt' },
+    {
+      rota: '/contatos',
+      texto: 'Contatos',
+      icone: 'people',
+      cypressTag: 'contatos',
+    },
+    {
+      rota: '/compromissos',
+      texto: 'Compromissos',
+      icone: 'event',
+      cypressTag: 'compromissos',
+    },
+    {
+      rota: '/categorias',
+      texto: 'Categorias',
+      icone: 'bookmarks',
+      cypressTag: 'categorias',
+    },
+    {
+      rota: '/despesas',
+      texto: 'Despesas',
+      icone: 'currency_exchange',
+      cypressTag: 'despesas',
+    },
+    {
+      rota: '/tarefas',
+      texto: 'Tarefas',
+      icone: 'task_alt',
+      cypressTag: 'tarefas',
+    },
   ];
 }

@@ -1,4 +1,4 @@
-describe('Processo de Login do Usuário', () => {
+describe('Processo de Registro do Usuário', () => {
   beforeEach(() => {
     cy.visit('/');
 

@@ -27,6 +27,7 @@
             [routerLink]="item.rota"
             class="botao-redirecionamento w-100"
             mat-fab
+            [attr.data-cy]="item.cypressTag"
             extended
           >
             <mat-icon>{{ item.icone }}</mat-icon>
