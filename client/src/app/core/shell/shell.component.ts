@@ -11,6 +11,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { LinkNavegacao } from './models/link-navegacao.model';
 import { UsuarioTokenViewModel } from '../auth/models/auth.models';
+import { MatMenuModule } from '@angular/material/menu';
+
 @Component({
   selector: 'app-shell',
   standalone: true,
@@ -24,9 +26,9 @@ import { UsuarioTokenViewModel } from '../auth/models/auth.models';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
+    MatMenuModule,
     MatIconModule,
   ],
-
   templateUrl: './shell.component.html',
   styleUrl: './shell.component.scss',
 })
@@ -46,6 +48,7 @@ export class ShellComponent {
       rota: '/registro',
     },
   ];
+
   authLinks: LinkNavegacao[] = [
     {
       titulo: 'Dashboard',
@@ -58,7 +61,9 @@ export class ShellComponent {
       rota: '/contatos',
     },
   ];
+
   isHandset$: Observable<boolean>;
+
   constructor(private breakpointObserver: BreakpointObserver) {
     this.isHandset$ = this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Tablet])
@@ -66,10 +71,11 @@ export class ShellComponent {
         map((result) => result.matches),
         shareReplay()
       );
+
     this.logout = new EventEmitter();
   }
 
-  logoutEfetuado() {
+  logoutAcionado() {
     this.logout.emit();
   }
 }
