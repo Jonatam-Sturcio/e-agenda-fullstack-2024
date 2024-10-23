@@ -52,6 +52,11 @@ export class ShellComponent {
       icone: 'home',
       rota: '/dashboard',
     },
+    {
+      titulo: 'Contatos',
+      icone: 'people',
+      rota: '/contatos',
+    },
   ];
   isHandset$: Observable<boolean>;
   constructor(private breakpointObserver: BreakpointObserver) {
