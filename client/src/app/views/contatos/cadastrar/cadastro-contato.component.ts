@@ -13,10 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { NotificacaoService } from '../../../core/notificacao/notificacao.service';
 import { ContatoService } from '../services/contato.service';
-import {
-  ContatoInseridoViewModel,
-  InserirContatoViewModel,
-} from '../models/contato.models';
+import { ContatoInseridoViewModel } from '../models/contato.models';
 import { PartialObserver } from 'rxjs';
 
 @Component({
@@ -38,10 +35,10 @@ export class CadastroContatoComponent {
   public form: FormGroup;
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
+    private router: Router,
     private contatoService: ContatoService,
-    private nofitificacaoService: NotificacaoService
+    private notificacaoService: NotificacaoService
   ) {
     this.form = this.fb.group({
       nome: [
@@ -52,13 +49,7 @@ export class CadastroContatoComponent {
           Validators.maxLength(30),
         ],
       ],
-      telefone: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[1-9]{2} [0-9]{4,5}-[0-9]{4}$/),
-        ],
-      ],
+      telefone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       empresa: [
         '',
@@ -78,6 +69,7 @@ export class CadastroContatoComponent {
       ],
     });
   }
+
   get nome() {
     return this.form.get('nome');
   }
@@ -97,30 +89,35 @@ export class CadastroContatoComponent {
   get cargo() {
     return this.form.get('cargo');
   }
+
   public gravar() {
     if (this.form.invalid) {
-      this.nofitificacaoService.aviso(
-        'Por favor, preencha o formulário corretamente.'
+      this.notificacaoService.aviso(
+        'Por favor, preencha o formulário corretamente!'
       );
+
       return;
     }
-    const inserirContato: InserirContatoViewModel = this.form.value;
+
+    const inserirContatoVm = this.form.value;
 
     const observer: PartialObserver<ContatoInseridoViewModel> = {
       next: (contatoInserido) => this.processarSucesso(contatoInserido),
       error: (erro) => this.processarFalha(erro),
     };
 
-    this.contatoService.inserir(inserirContato).subscribe({});
+    this.contatoService.inserir(inserirContatoVm).subscribe(observer);
   }
 
   private processarSucesso(contato: ContatoInseridoViewModel): void {
-    this.nofitificacaoService.sucesso(
-      `Contato "${contato.nome}" cadastrado com sucesso!`
+    this.notificacaoService.sucesso(
+      `Contato ${contato.nome} cadastrado com sucesso!`
     );
+
     this.router.navigate(['/contatos', 'listar']);
   }
-  private processarFalha(erro: Error) {
-    this.nofitificacaoService.erro(erro.message);
+
+  private processarFalha(erro: Error): any {
+    this.notificacaoService.erro(erro.message);
   }
 }

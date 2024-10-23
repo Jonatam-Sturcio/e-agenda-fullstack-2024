@@ -2,7 +2,9 @@
   <div class="row justify-content-center g-3 mt-2">
     <div class="col col-md-10 col-lg-6">
       <h1 class="display-3">Cadastro de Contato</h1>
+
       <hr />
+
       <form [formGroup]="form" (submit)="gravar()">
         <mat-form-field class="w-100 mt-5" appearance="fill">
           <mat-label>Nome</mat-label>
@@ -43,6 +45,7 @@
             >
           </mat-error>
         </mat-form-field>
+
         <mat-form-field class="w-100 mt-3" appearance="fill">
           <mat-label>Telefone</mat-label>
           <input
@@ -61,6 +64,7 @@
             >
           </mat-error>
         </mat-form-field>
+
         <mat-form-field class="w-100 mt-3" appearance="fill">
           <mat-label>Empresa</mat-label>
           <input
@@ -75,14 +79,12 @@
             <span *ngIf="empresa?.errors?.['required']"
               >A empresa precisa ser preenchida.</span
             >
-            <span
-              *ngIf="empresa?.errors?.['minlength']"
-              edicao-contato.component.ts|html
-              :
+            <span *ngIf="empresa?.errors?.['minlength']"
               >A empresa deve conter ao menos 3 caracteres.</span
             >
           </mat-error>
         </mat-form-field>
+
         <mat-form-field class="w-100 mt-3" appearance="fill">
           <mat-label>Cargo</mat-label>
           <input
@@ -102,6 +104,7 @@
             >
           </mat-error>
         </mat-form-field>
+
         <div class="row justify-content-end g-2 gap-2 mt-3">
           <button type="submit" mat-flat-button class="col-sm-4">
             <mat-icon matIconPrefix>check</mat-icon>

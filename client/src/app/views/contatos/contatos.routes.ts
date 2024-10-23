@@ -35,11 +35,15 @@ export const contatosRoutes: Routes = [
   {
     path: 'editar/:id',
     component: EdicaoContatoComponent,
-    resolve: visualizarContatosResolver,
+    resolve: {
+      contato: visualizarContatosResolver,
+    },
   },
   {
     path: 'excluir/:id',
     component: ExclusaoContatoComponent,
-    resolve: visualizarContatosResolver,
+    resolve: {
+      contato: visualizarContatosResolver,
+    },
   },
 ];
