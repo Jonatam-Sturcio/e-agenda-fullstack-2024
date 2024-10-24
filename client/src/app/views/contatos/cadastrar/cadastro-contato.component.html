@@ -12,6 +12,7 @@
             matInput
             formControlName="nome"
             autocomplete="name"
+            data-cy="nome"
             placeholder="Ex: João da Silva"
             [maxLength]="30"
           />
@@ -32,6 +33,7 @@
             matInput
             formControlName="email"
             type="email"
+            data-cy="email"
             autocomplete="email"
             placeholder="Ex: joaosilva@gmail.com"
           />
@@ -51,6 +53,7 @@
           <input
             matInput
             formControlName="telefone"
+            data-cy="telefone"
             autocomplete="tel-national"
             placeholder="Ex: (00) 90000-0000"
           />
@@ -70,6 +73,7 @@
           <input
             matInput
             formControlName="empresa"
+            data-cy="empresa"
             autocomplete="organization"
             placeholder="Ex: Academia do Programador"
             [maxLength]="30"
@@ -90,6 +94,7 @@
           <input
             matInput
             formControlName="cargo"
+            data-cy="cargo"
             autocomplete="organization-title"
             placeholder="Ex: Professor"
             [maxLength]="30"
@@ -106,7 +111,12 @@
         </mat-form-field>
 
         <div class="row justify-content-end g-2 gap-2 mt-3">
-          <button type="submit" mat-flat-button class="col-sm-4">
+          <button
+            type="submit"
+            data-cy="confirmar"
+            mat-flat-button
+            class="col-sm-4"
+          >
             <mat-icon matIconPrefix>check</mat-icon>
             Gravar
           </button>

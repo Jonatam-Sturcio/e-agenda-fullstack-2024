@@ -6,6 +6,7 @@
         mat-flat-button
         class="col-lg-4 col-xxl-2 fs-6 py-4"
         [routerLink]="['/contatos', 'cadastrar']"
+        data-cy="cadastrar"
       >
         <mat-icon>bookmark_add</mat-icon>
         Cadastrar
@@ -28,6 +29,7 @@
           <a
             mat-icon-button
             class="botao-editar"
+            data-cy="editar"
             matTooltip="Editar {{ item.nome }}"
             [routerLink]="['/contatos', 'editar', item.id]"
           >
@@ -36,6 +38,7 @@
           <a
             mat-icon-button
             class="botao-excluir"
+            data-cy="excluir"
             matTooltip="Excluir {{ item.nome }}"
             [routerLink]="['/contatos', 'excluir', item.id]"
           >

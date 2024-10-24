@@ -9,6 +9,7 @@
           <input
             matInput
             formControlName="nome"
+            data-cy="nome"
             autocomplete="name"
             placeholder="Ex: João da Silva"
             [maxLength]="30"
@@ -100,7 +101,12 @@
           </mat-error>
         </mat-form-field>
         <div class="row justify-content-end g-2 gap-2 mt-3">
-          <button type="submit" mat-flat-button class="col-sm-4">
+          <button
+            type="submit"
+            data-cy="confirmar"
+            mat-flat-button
+            class="col-sm-4"
+          >
             <mat-icon matIconPrefix>check</mat-icon>
             Gravar
           </button>
