@@ -5,7 +5,9 @@ import { LocalStorageService } from '../../../core/auth/services/local-storage.s
 import { ListarCompromissoViewModel } from '../models/compromisso.models';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CompromissoService {
   private readonly url = `${environment.apiUrl}/compromissos`;
 

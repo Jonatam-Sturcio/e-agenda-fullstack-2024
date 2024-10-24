@@ -60,6 +60,11 @@ export class ShellComponent {
       icone: 'people',
       rota: '/contatos',
     },
+    {
+      titulo: 'Compromissos',
+      icone: 'event_note',
+      rota: '/compromissos',
+    },
   ];
 
   isHandset$: Observable<boolean>;
