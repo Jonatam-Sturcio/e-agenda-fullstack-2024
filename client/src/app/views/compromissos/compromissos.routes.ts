@@ -3,8 +3,9 @@ import { inject } from '@angular/core';
 import { ListagemCompromissoComponent } from './listar/listagem-compromissos.component';
 import { ListarCompromissoViewModel } from './models/compromisso.models';
 import { CompromissoService } from './services/compromisso.service';
+import { CadastroCompromissoComponent } from './cadastrar/cadastro-compromisso.component';
 
-const listagemContatosResolver: ResolveFn<
+const listagemCompromissosResolver: ResolveFn<
   ListarCompromissoViewModel[]
 > = () => {
   return inject(CompromissoService).selecionarTodos();
@@ -16,7 +17,8 @@ export const compromissosRoutes: Routes = [
     path: 'listar',
     component: ListagemCompromissoComponent,
     resolve: {
-      contatos: listagemContatosResolver,
+      compromissos: listagemCompromissosResolver,
     },
   },
+  { path: 'cadastrar', component: CadastroCompromissoComponent },
 ];

@@ -49,6 +49,6 @@ export const routes: Routes = [
   {
     path: 'compromissos',
     children: compromissosRoutes,
-    canMatch: [authGuard],
+    canMatch: [authUserGuard],
   },
 ];

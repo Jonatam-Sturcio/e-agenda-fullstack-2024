@@ -23,13 +23,6 @@
         <mat-card-content class="d-grid mt-4">
           <span><strong>Data:</strong> {{ item.data }}</span>
           <span><strong>Hora de Inicio:</strong> {{ item.horaInicio }}</span>
-          <span *ngIf="item.local"
-            ><strong>Local:</strong> {{ item.local }}</span
-          >]
-          <span *ngIf="item.link"><strong>Link:</strong> {{ item.link }}</span>
-          <span *ngIf="item.Contato"
-            ><strong>Contato:</strong> {{ item.Contato.nome }}</span
-          >
         </mat-card-content>
         <mat-card-footer class="d-flex justify-content-end gap-1 p-3 mt-auto">
           <a
