@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { LocalStorageService } from '../../../core/auth/services/local-storage.service';
 import {
   CompromissoEditadoViewModel,
+  CompromissoExcluidoViewModel,
   CompromissoInseridoViewModel,
   EditarCompromissoViewModel,
   InserirCompromissoViewModel,
@@ -52,6 +53,14 @@ export class CompromissoService {
     const urlCompleto = `${this.url}/${id}`;
     return this.http
       .put<CompromissoEditadoViewModel>(urlCompleto, editarCompromissoVm)
+      .pipe(map(this.processarDados), catchError(this.processarFalha));
+  }
+
+  excluir(id: string): Observable<CompromissoExcluidoViewModel> {
+    const urlCompleto = `${this.url}/${id}`;
+
+    return this.http
+      .delete<CompromissoExcluidoViewModel[]>(urlCompleto)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 

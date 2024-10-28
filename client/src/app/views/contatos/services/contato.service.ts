@@ -63,6 +63,7 @@ export class ContatoService {
       .delete<ContatoExcluidoViewModel[]>(urlCompleto)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
+
   private processarDados(resposta: any) {
     if (resposta.sucesso) return resposta.dados;
 

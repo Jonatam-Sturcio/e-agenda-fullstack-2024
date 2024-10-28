@@ -80,9 +80,9 @@ export class EdicaoCompromissoComponent implements OnInit {
       tipoLocal: ['', [Validators.required]],
       local: [''],
       link: [''],
-      data: ['', [Validators.required]],
-      horaInicio: ['', [Validators.required]],
-      horaTermino: ['', [Validators.required]],
+      data: [new Date().toISOString().substring(0, 10), [Validators.required]],
+      horaInicio: ['08:00', [Validators.required]],
+      horaTermino: ['22:00', [Validators.required]],
       contatoId: [],
     });
   }

@@ -8,6 +8,7 @@ import {
 import { CompromissoService } from './services/compromisso.service';
 import { CadastroCompromissoComponent } from './cadastrar/cadastro-compromisso.component';
 import { EdicaoCompromissoComponent } from './editar/edicao-compromisso.component';
+import { ExclusaoCompromissoComponent } from './excluir/exclusao-compromisso.component';
 
 const listagemCompromissosResolver: ResolveFn<
   ListarCompromissoViewModel[]
@@ -34,6 +35,13 @@ export const compromissosRoutes: Routes = [
   {
     path: 'editar/:id',
     component: EdicaoCompromissoComponent,
+    resolve: {
+      compromisso: visualizarCompromissoResolver,
+    },
+  },
+  {
+    path: 'excluir/:id',
+    component: ExclusaoCompromissoComponent,
     resolve: {
       compromisso: visualizarCompromissoResolver,
     },

@@ -30,7 +30,7 @@ export interface EditarCompromissoViewModel {
   idContato?: number;
 }
 export interface CompromissoEditadoViewModel {
-  id: number;
+  id: string;
   assunto: string;
   data: Date;
   horaInicio: string;
@@ -41,20 +41,21 @@ export interface CompromissoEditadoViewModel {
 }
 export interface CompromissoExcluidoViewModel {}
 export interface ListarCompromissoViewModel {
-  id: number;
+  id: string;
   assunto: string;
   data: Date;
   horaInicio: string;
   horaTermino: string;
 }
 export interface VisualizarCompromissoViewModel {
-  id: number;
+  id: string;
   assunto: string;
   data: Date;
   horaInicio: string;
   horaTermino: string;
+  tipoLocal: number;
   local?: string;
   link?: string;
   idContato?: number;
-  Contato?: ListarContatoViewModel;
+  contato?: ListarContatoViewModel;
 }
