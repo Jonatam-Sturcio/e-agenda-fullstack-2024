@@ -10,24 +10,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable, PartialObserver } from 'rxjs';
 import { NotificacaoService } from '../../../core/notificacao/notificacao.service';
-import { CompromissoInseridoViewModel } from '../models/compromisso.models';
-import { CompromissoService } from '../services/compromisso.service';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
 import {
-  MatCalendarCellClassFunction,
-  MatDatepickerModule,
-} from '@angular/material/datepicker';
-import { tipoCompromisso } from '../models/tipoComprmisso.model';
-import { ListarContatoViewModel } from '../../contatos/models/contato.models';
+  ContatoEditadoViewModel,
+  ListarContatoViewModel,
+} from '../../contatos/models/contato.models';
 import { ContatoService } from '../../contatos/services/contato.service';
+import { tipoCompromisso } from '../models/tipoComprmisso.model';
+import { CompromissoEditadoViewModel } from '../models/compromisso.models';
+import { CompromissoService } from '../services/compromisso.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  selector: 'app-cadastro-compromisso',
+  selector: 'app-edicao-compromisso',
   standalone: true,
   imports: [
     NgIf,
@@ -43,19 +42,20 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     MatSelectModule,
   ],
-  templateUrl: './cadastro-compromisso.component.html',
+  templateUrl: './edicao-compromisso.component.html',
 })
-export class CadastroCompromissoComponent implements OnInit {
+export class EdicaoCompromissoComponent implements OnInit {
   public form: FormGroup;
   public tipoCompromisso: tipoCompromisso[];
   public contatos$?: Observable<ListarContatoViewModel[]>;
 
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
+    private contatoService: ContatoService,
     private compromissoService: CompromissoService,
-    private notificacaoService: NotificacaoService,
-    private contatoService: ContatoService
+    private notificacaoService: NotificacaoService
   ) {
     this.tipoCompromisso = [
       {
@@ -86,8 +86,13 @@ export class CadastroCompromissoComponent implements OnInit {
       contatoId: [],
     });
   }
+
   ngOnInit(): void {
     this.contatos$ = this.contatoService.selecionarTodos();
+
+    const compromisso = this.route.snapshot.data['compromisso'];
+
+    this.form.patchValue({ ...compromisso, contatoId: compromisso.contato.id });
   }
 
   get assunto() {
@@ -129,19 +134,20 @@ export class CadastroCompromissoComponent implements OnInit {
 
       return;
     }
+    const id = this.route.snapshot.params['id'];
+    const editarCompromissoVm = this.form.value;
 
-    const inserirCompromissoVm = this.form.value;
-
-    const observer: PartialObserver<CompromissoInseridoViewModel> = {
+    const observer: PartialObserver<CompromissoEditadoViewModel> = {
       next: (compromissoInserido) => this.processarSucesso(compromissoInserido),
       error: (erro) => this.processarFalha(erro),
     };
-    this.compromissoService.inserir(inserirCompromissoVm).subscribe(observer);
+
+    this.compromissoService.editar(id, editarCompromissoVm).subscribe(observer);
   }
 
-  private processarSucesso(compromisso: CompromissoInseridoViewModel): void {
+  private processarSucesso(compromisso: CompromissoEditadoViewModel): void {
     this.notificacaoService.sucesso(
-      `Compromisso ${compromisso.assunto} cadastrado com sucesso!`
+      `Compromisso ${compromisso.assunto} editado com sucesso!`
     );
 
     this.router.navigate(['/compromissos', 'listar']);
@@ -156,7 +162,7 @@ export class CadastroCompromissoComponent implements OnInit {
 
     if (!controle) return false;
 
-    if (controle.dirty && controle.value == op) return true;
+    if (controle.pristine && controle.value == op) return true;
 
     return false;
   }
