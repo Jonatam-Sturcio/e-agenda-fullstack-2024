@@ -3,14 +3,14 @@ import { ListarContatoViewModel } from '../../contatos/models/contato.models';
 export interface InserirCategoriaViewModel {
   titulo: string;
 }
-export interface CategoriaInseridoViewModel {
+export interface CategoriaInseridaViewModel {
   id: string;
   titulo: string;
 }
 export interface EditarCategoriaViewModel {
   titulo: string;
 }
-export interface CategoriaEditadoViewModel {
+export interface CategoriaEditadaViewModel {
   id: string;
   titulo: string;
 }

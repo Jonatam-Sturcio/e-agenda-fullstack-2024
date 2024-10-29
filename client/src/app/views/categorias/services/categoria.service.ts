@@ -6,9 +6,9 @@ import {
   ListarCategoriasViewModel,
   VisualizarCategoriaViewModel,
   InserirCategoriaViewModel,
-  CategoriaInseridoViewModel,
+  CategoriaInseridaViewModel,
   EditarCategoriaViewModel,
-  CategoriaEditadoViewModel,
+  CategoriaEditadaViewModel,
   CategoriaExcluidaViewModel,
 } from '../models/categoria.models';
 
@@ -36,19 +36,19 @@ export class CategoriaService {
 
   public inserir(
     inserirCategoriaVm: InserirCategoriaViewModel
-  ): Observable<CategoriaInseridoViewModel> {
+  ): Observable<CategoriaInseridaViewModel> {
     return this.http
-      .post<CategoriaInseridoViewModel>(this.url, inserirCategoriaVm)
+      .post<CategoriaInseridaViewModel>(this.url, inserirCategoriaVm)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
   public editar(
     id: string,
     editarCategoriaVm: EditarCategoriaViewModel
-  ): Observable<CategoriaEditadoViewModel> {
+  ): Observable<CategoriaEditadaViewModel> {
     const urlCompleto = `${this.url}/${id}`;
     return this.http
-      .put<CategoriaEditadoViewModel>(urlCompleto, editarCategoriaVm)
+      .put<CategoriaEditadaViewModel>(urlCompleto, editarCategoriaVm)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
