@@ -48,7 +48,7 @@ export class ExclusaoCompromissoComponent implements OnInit {
   }
 
   private processarSucesso(): void {
-    this.notificacaoService.sucesso('Contato excluído com sucesso!');
+    this.notificacaoService.sucesso('Compromisso excluído com sucesso!');
 
     this.router.navigate(['/compromissos', 'listar']);
   }

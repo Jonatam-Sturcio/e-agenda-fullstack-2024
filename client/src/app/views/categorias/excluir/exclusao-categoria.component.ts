@@ -1,12 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VisualizarCategoriaViewModel } from '../models/categoria.models';
+import { CategoriaService } from '../services/categoria.service';
+import { NgIf, NgForOf, AsyncPipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { NotificacaoService } from '../../../core/notificacao/notificacao.service';
 
 @Component({
   selector: 'app-exclusao-categoria',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf,
+    NgForOf,
+    AsyncPipe,
+    RouterLink,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+  ],
   templateUrl: './exclusao-categoria.component.html',
-  styleUrl: './exclusao-categoria.component.scss'
 })
-export class ExclusaoCategoriaComponent {
+export class ExclusaoCategoriaComponent implements OnInit {
+  detalhesCategoria?: VisualizarCategoriaViewModel;
 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private categoriaService: CategoriaService,
+    private notificacaoService: NotificacaoService
+  ) {}
+
+  ngOnInit(): void {
+    this.detalhesCategoria = this.route.snapshot.data['categoria'];
+  }
+
+  public excluir() {
+    this.categoriaService.excluir(this.detalhesCategoria!.id).subscribe({
+      next: () => this.processarSucesso(),
+      error: (erro) => this.processarFalha(erro),
+    });
+  }
+
+  private processarSucesso(): void {
+    this.notificacaoService.sucesso('Categoria excluído com sucesso!');
+
+    this.router.navigate(['/categorias', 'listar']);
+  }
+
+  private processarFalha(erro: Error) {
+    this.notificacaoService.erro(erro.message);
+  }
 }
