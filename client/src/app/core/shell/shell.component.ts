@@ -62,8 +62,13 @@ export class ShellComponent {
     },
     {
       titulo: 'Compromissos',
-      icone: 'event_note',
+      icone: 'event',
       rota: '/compromissos',
+    },
+    {
+      titulo: 'Categorias',
+      icone: 'bookmarks',
+      rota: '/categorias',
     },
   ];
 
