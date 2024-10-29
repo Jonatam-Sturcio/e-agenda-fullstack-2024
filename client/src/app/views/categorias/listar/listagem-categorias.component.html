@@ -26,7 +26,7 @@
             class="botao-editar"
             data-cy="editar"
             matTooltip="Editar {{ item.titulo }}"
-            [routerLink]="['/compromissos', 'editar', item.id]"
+            [routerLink]="['/categorias', 'editar', item.id]"
           >
             <mat-icon>edit</mat-icon>
           </a>
@@ -35,7 +35,7 @@
             class="botao-excluir"
             data-cy="excluir"
             matTooltip="Excluir {{ item.titulo }}"
-            [routerLink]="['/compromissos', 'excluir', item.id]"
+            [routerLink]="['/categorias', 'excluir', item.id]"
           >
             <mat-icon>delete</mat-icon>
           </a>

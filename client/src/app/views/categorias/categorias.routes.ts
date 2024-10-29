@@ -7,6 +7,7 @@ import {
 import { CategoriaService } from './services/categoria.service';
 import { ListagemCategoriasComponent } from './listar/listagem-categorias.component';
 import { CadastroCategoriaComponent } from './cadastrar/cadastro-categoria.component';
+import { EdicaoCategoriaComponent } from './editar/edicao-categoria.component';
 
 const listagemCategoriasResolver: ResolveFn<
   ListarCategoriasViewModel[]
@@ -30,18 +31,18 @@ export const CategoriasRoutes: Routes = [
     },
   },
   { path: 'cadastrar', component: CadastroCategoriaComponent },
-  /* {
+  {
     path: 'editar/:id',
     component: EdicaoCategoriaComponent,
     resolve: {
       categoria: visualizarCategoriaResolver,
     },
-  },
+  } /*
   {
     path: 'excluir/:id',
     component: ExclusaoCategoriaComponent,
     resolve: {
       categoria: visualizarCategoriaResolver,
     },
-  },*/
+  },*/,
 ];
