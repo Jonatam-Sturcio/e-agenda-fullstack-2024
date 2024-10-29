@@ -29,9 +29,10 @@
 
           <mat-form-field class="w-100 mt-3" appearance="fill">
             <mat-label>Tipo de Compromisso</mat-label>
-            <mat-select formControlName="tipoLocal">
+            <mat-select formControlName="tipoLocal" data-cy="tipoLocal">
               <mat-option
-                *ngFor="let tipo of tipoCompromisso"
+                *ngFor="let tipo of tipoCompromisso; index as i"
+                [attr.data-cy-select-option]="i"
                 [value]="tipo.id"
                 >{{ tipo.titulo }}</mat-option
               >
@@ -79,6 +80,7 @@
               matInput
               [matDatepicker]="picker"
               formControlName="data"
+              data-cy="data"
               placeholder="MM/DD/AAAA"
             />
             <mat-datepicker-toggle
