@@ -10,6 +10,7 @@ import { CadastroDespesaComponent } from './cadastrar/cadastro-despesa.component
 import { ListagemCategoriasResolver } from '../categorias/services/listagem-categorias.resolver';
 import { EdicaoDespesaComponent } from './editar/edicao-despesa.component';
 import { visualizarDespesaResolver } from './services/visualizar-despesa.resolver';
+import { ExclusaoDespesaComponent } from './excluir/exclusao-despesa.component';
 
 const listagemDespesasResolver: ResolveFn<ListarDespesaViewModel[]> = () => {
   return inject(DespesaService).selecionarTodos();
@@ -39,11 +40,11 @@ export const DespesasRoutes: Routes = [
       categorias: ListagemCategoriasResolver,
     },
   },
-  // {
-  //   path: 'excluir/:id',
-  //   component: ExclusaoDespesaComponent,
-  //   resolve: {
-  //     despesa: visualizarDespesaResolver,
-  //   },
-  // },
+  {
+    path: 'excluir/:id',
+    component: ExclusaoDespesaComponent,
+    resolve: {
+      despesa: visualizarDespesaResolver,
+    },
+  },
 ];

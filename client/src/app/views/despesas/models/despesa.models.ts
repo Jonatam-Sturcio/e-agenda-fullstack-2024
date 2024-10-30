@@ -1,11 +1,8 @@
 export enum FormaPgtoDespesaEnum {
   PIX,
   Dinheiro,
-  CartaoCredito = 'Cartão de Crédito',
+  CartaoCredito,
 }
-
-import { ListarContatoViewModel } from '../../contatos/models/contato.models';
-
 export interface InserirDespesaViewModel {
   descricao: string;
   valor: number;
@@ -48,5 +45,5 @@ export interface VisualizarDespesaViewModel {
   valor: number;
   data: Date;
   formaPagamento: FormaPgtoDespesaEnum;
-  categoriasSelecionadas: string[];
+  categorias: string[];
 }
