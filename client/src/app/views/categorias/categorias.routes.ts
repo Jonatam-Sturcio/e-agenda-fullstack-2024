@@ -9,7 +9,7 @@ import { ListagemCategoriasComponent } from './listar/listagem-categorias.compon
 import { CadastroCategoriaComponent } from './cadastrar/cadastro-categoria.component';
 import { EdicaoCategoriaComponent } from './editar/edicao-categoria.component';
 import { ExclusaoCategoriaComponent } from './excluir/exclusao-categoria.component';
-import { listagemCategoriasResolver } from './services/listagem-categorias.resolver';
+import { ListagemCategoriasResolver } from './services/listagem-categorias.resolver';
 
 const visualizarCategoriaResolver: ResolveFn<VisualizarCategoriaViewModel> = (
   route: ActivatedRouteSnapshot
@@ -24,7 +24,7 @@ export const CategoriasRoutes: Routes = [
     path: 'listar',
     component: ListagemCategoriasComponent,
     resolve: {
-      categorias: listagemCategoriasResolver,
+      categorias: ListagemCategoriasResolver,
     },
   },
   { path: 'cadastrar', component: CadastroCategoriaComponent },
