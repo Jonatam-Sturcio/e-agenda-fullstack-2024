@@ -5,6 +5,7 @@ import {
   VisualizarDespesaViewModel,
 } from './models/despesa.models';
 import { DespesaService } from './services/despesa.service';
+import { ListagemDespesasComponent } from './listar/listagem-despesas.component';
 
 const listagemDespesasResolver: ResolveFn<ListarDespesaViewModel[]> = () => {
   return inject(DespesaService).selecionarTodos();
@@ -18,13 +19,13 @@ const visualizarDespesaResolver: ResolveFn<VisualizarDespesaViewModel> = (
 
 export const DespesasRoutes: Routes = [
   { path: '', redirectTo: 'listar', pathMatch: 'full' },
-  // {
-  //   path: 'listar',
-  //   component: ListagemDespesaComponent,
-  //   resolve: {
-  //     despesas: listagemDespesasResolver,
-  //   },
-  // },
+  {
+    path: 'listar',
+    component: ListagemDespesasComponent,
+    resolve: {
+      despesas: listagemDespesasResolver,
+    },
+  },
   // { path: 'cadastrar', component: CadastroDespesaComponent },
   // {
   //   path: 'editar/:id',

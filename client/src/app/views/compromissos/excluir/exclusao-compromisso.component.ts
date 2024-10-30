@@ -1,4 +1,4 @@
-import { NgIf, NgForOf, AsyncPipe } from '@angular/common';
+import { NgIf, NgForOf, AsyncPipe, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,6 +16,7 @@ import { VisualizarCompromissoViewModel } from '../models/compromisso.models';
   standalone: true,
   imports: [
     NgIf,
+    DatePipe,
     NgForOf,
     AsyncPipe,
     RouterLink,

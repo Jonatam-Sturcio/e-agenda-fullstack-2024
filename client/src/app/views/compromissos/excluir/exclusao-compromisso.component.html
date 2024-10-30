@@ -13,7 +13,10 @@
         </mat-card-header>
 
         <mat-card-content class="d-grid mt-4">
-          <span><strong>Data:</strong> {{ detalhesCompromisso?.data }}</span>
+          <span
+            ><strong>Data:</strong>
+            {{ detalhesCompromisso?.data | date : "shortDate" }}</span
+          >
           <span
             ><strong>Hora de Início:</strong>
             {{ detalhesCompromisso?.horaInicio }}</span
