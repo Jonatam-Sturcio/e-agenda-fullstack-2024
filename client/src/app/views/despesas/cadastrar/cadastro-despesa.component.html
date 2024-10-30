@@ -78,7 +78,7 @@
               [attr.data-cy-select-option]="i"
               [value]="i"
             >
-              {{ opcao }}
+              {{ opcao === "CartaoCredito" ? "Cartão de Crédito" : opcao }}
             </mat-option>
           </mat-select>
           <mat-error class="text-white" *ngIf="formaPagamento?.invalid">
