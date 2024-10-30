@@ -30,11 +30,7 @@ namespace eAgenda.WebApi.Config.AutoMapperConfig
 
                 .ForMember(destino => destino.QuantidadeItens, opt => opt.MapFrom(origem => origem.Itens.Count));
 
-            CreateMap<ItemTarefa, VisualizarItemTarefaViewModel>()
-                .ForMember(destino => destino.Situacao, opt =>
-                    opt.MapFrom(origem => origem.Concluido ? "Concluído" : "Pendente"));
-
-
+           
             CreateMap<ItemTarefa, ItemTarefaViewModel>();
         }
 
