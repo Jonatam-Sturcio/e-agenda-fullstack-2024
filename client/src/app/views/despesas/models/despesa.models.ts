@@ -13,7 +13,7 @@ export interface InserirDespesaViewModel {
   formaPagamento: FormaPgtoDespesaEnum;
   categoriasSelecionadas: string[];
 }
-export interface DespesaInseridoViewModel {
+export interface DespesaInseridaViewModel {
   descricao: string;
   valor: number;
   data: Date;
@@ -27,14 +27,14 @@ export interface EditarDespesaViewModel {
   formaPagamento: FormaPgtoDespesaEnum;
   categoriasSelecionadas: string[];
 }
-export interface DespesaEditadoViewModel {
+export interface DespesaEditadaViewModel {
   descricao: string;
   valor: number;
   data: Date;
   formaPagamento: FormaPgtoDespesaEnum;
   categoriasSelecionadas: string[];
 }
-export interface DespesaExcluidoViewModel {}
+export interface DespesaExcluidaViewModel {}
 export interface ListarDespesaViewModel {
   id: string;
   descricao: string;

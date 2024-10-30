@@ -9,12 +9,8 @@ import { ListagemCategoriasComponent } from './listar/listagem-categorias.compon
 import { CadastroCategoriaComponent } from './cadastrar/cadastro-categoria.component';
 import { EdicaoCategoriaComponent } from './editar/edicao-categoria.component';
 import { ExclusaoCategoriaComponent } from './excluir/exclusao-categoria.component';
+import { listagemCategoriasResolver } from './services/listagem-categorias.resolver';
 
-const listagemCategoriasResolver: ResolveFn<
-  ListarCategoriasViewModel[]
-> = () => {
-  return inject(CategoriaService).selecionarTodos();
-};
 const visualizarCategoriaResolver: ResolveFn<VisualizarCategoriaViewModel> = (
   route: ActivatedRouteSnapshot
 ) => {

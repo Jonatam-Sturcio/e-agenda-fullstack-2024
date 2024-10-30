@@ -6,10 +6,10 @@ import {
   ListarDespesaViewModel,
   VisualizarDespesaViewModel,
   InserirDespesaViewModel,
-  DespesaInseridoViewModel,
+  DespesaInseridaViewModel,
   EditarDespesaViewModel,
-  DespesaEditadoViewModel,
-  DespesaExcluidoViewModel,
+  DespesaEditadaViewModel,
+  DespesaExcluidaViewModel,
 } from '../models/despesa.models';
 
 @Injectable({
@@ -36,27 +36,27 @@ export class DespesaService {
 
   public inserir(
     inserirDespesaVm: InserirDespesaViewModel
-  ): Observable<DespesaInseridoViewModel> {
+  ): Observable<DespesaInseridaViewModel> {
     return this.http
-      .post<DespesaInseridoViewModel>(this.url, inserirDespesaVm)
+      .post<DespesaInseridaViewModel>(this.url, inserirDespesaVm)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
   public editar(
     id: string,
     editarDespesaVm: EditarDespesaViewModel
-  ): Observable<DespesaEditadoViewModel> {
+  ): Observable<DespesaEditadaViewModel> {
     const urlCompleto = `${this.url}/${id}`;
     return this.http
-      .put<DespesaEditadoViewModel>(urlCompleto, editarDespesaVm)
+      .put<DespesaEditadaViewModel>(urlCompleto, editarDespesaVm)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
-  excluir(id: string): Observable<DespesaExcluidoViewModel> {
+  excluir(id: string): Observable<DespesaExcluidaViewModel> {
     const urlCompleto = `${this.url}/${id}`;
 
     return this.http
-      .delete<DespesaExcluidoViewModel[]>(urlCompleto)
+      .delete<DespesaExcluidaViewModel[]>(urlCompleto)
       .pipe(map(this.processarDados), catchError(this.processarFalha));
   }
 
