@@ -17,7 +17,7 @@ describe('Processo de redirecionamento para listar compromissos', () => {
     cy.contains('Listagem de Compromissos');
   });
 
-  it('Deve cadastrar um novo compromisso sem contato', () => {
+  it('Deve cadastrar um novo compromisso com contato', () => {
     cy.get('[data-cy=cadastrar]').click();
 
     cy.get('[data-cy=assunto]').type('Assunto Cypress');
@@ -31,13 +31,16 @@ describe('Processo de redirecionamento para listar compromissos', () => {
 
     cy.get('[data-cy=horaTermino]').type('14:00');
 
+    cy.get('[data-cy=contato]').click();
+    cy.get('[data-cy-select-option]').last().click();
+
     cy.get('[data-cy=confirmar]').click();
 
     cy.contains('Assunto Cypress');
   });
 
   it('Deve editar um compromisso', () => {
-    cy.get('[data-cy=editar]').first().click();
+    cy.get('[data-cy=editar]').last().click();
 
     cy.get('[data-cy=assunto]').clear();
     cy.get('[data-cy=assunto]').type('Assunto Cypress Editado');
@@ -48,7 +51,7 @@ describe('Processo de redirecionamento para listar compromissos', () => {
   });
 
   it('Deve excluir um compromisso', () => {
-    cy.get('[data-cy=excluir]').first().click();
+    cy.get('[data-cy=excluir]').last().click();
 
     cy.get('[data-cy=confirmar]').click();
 

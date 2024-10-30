@@ -75,6 +75,7 @@
           >
             <mat-option
               *ngFor="let opcao of opcoesPagamento; index as i"
+              [attr.data-cy-select-option]="i"
               [value]="i"
             >
               {{ opcao }}
@@ -94,7 +95,8 @@
             placeholder="Selecione uma ou mais categorias"
           >
             <mat-option
-              *ngFor="let categoria of categorias"
+              *ngFor="let categoria of categorias; index as i"
+              [attr.data-cy-select-option]="i"
               [value]="categoria.id"
             >
               {{ categoria.titulo }}
@@ -110,6 +112,7 @@
             type="submit"
             mat-flat-button
             class="col-sm-4"
+            data-cy="confirmar"
             color="primary"
           >
             <mat-icon>check</mat-icon>

@@ -131,10 +131,11 @@
 
           <mat-form-field class="w-100 mt-3" appearance="fill">
             <mat-label>Contato</mat-label>
-            <mat-select formControlName="contatoId">
+            <mat-select formControlName="contatoId" data-cy="contato">
               <mat-option
-                *ngFor="let contato of contatos"
+                *ngFor="let contato of contatos; index as i"
                 [value]="contato.id"
+                [attr.data-cy-select-option]="i"
                 >{{ contato.nome }}</mat-option
               >
             </mat-select>

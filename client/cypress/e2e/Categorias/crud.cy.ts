@@ -28,7 +28,7 @@ describe('Processo de redirecionamento para listar categorias', () => {
   });
 
   it('Deve editar uma categoria', () => {
-    cy.get('[data-cy=editar]').first().click();
+    cy.get('[data-cy=editar]').last().click();
 
     cy.get('[data-cy=titulo]').clear();
     cy.get('[data-cy=titulo]').type('Categoria Cypress Editado');
@@ -39,7 +39,7 @@ describe('Processo de redirecionamento para listar categorias', () => {
   });
 
   it('Deve excluir uma categoria', () => {
-    cy.get('[data-cy=excluir]').first().click();
+    cy.get('[data-cy=excluir]').last().click();
 
     cy.get('[data-cy=confirmar]').click();
 

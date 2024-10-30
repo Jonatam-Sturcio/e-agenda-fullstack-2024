@@ -36,7 +36,7 @@ describe('Processo de redirecionamento para listar contatos', () => {
   });
 
   it('Deve editar um contato', () => {
-    cy.get('[data-cy=editar]').first().click();
+    cy.get('[data-cy=editar]').last().click();
 
     cy.get('[data-cy=nome]').clear();
     cy.get('[data-cy=nome]').type('Teste Cypress Editado');
@@ -47,7 +47,7 @@ describe('Processo de redirecionamento para listar contatos', () => {
   });
 
   it('Deve excluir um contato', () => {
-    cy.get('[data-cy=excluir]').first().click();
+    cy.get('[data-cy=excluir]').last().click();
 
     cy.get('[data-cy=confirmar]').click();
 
