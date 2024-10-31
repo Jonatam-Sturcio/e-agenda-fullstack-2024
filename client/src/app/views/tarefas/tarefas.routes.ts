@@ -8,6 +8,7 @@ import { TarefaService } from './service/tarefas.service';
 import { ListagemTarefasComponent } from './listar/listagem-tarefas.component';
 import { CadastroTarefaComponent } from './cadastrar/cadastro-tarefa.component';
 import { EdicaoTarefaComponent } from './editar/edicao-tarefa.component';
+import { ExclusaoTarefaComponent } from './excluir/exclusao-tarefa.component';
 
 export const listagemTarefasResolver: ResolveFn<
   ListarTarefaViewModel[]
@@ -41,11 +42,11 @@ export const tarefasRoutes: Routes = [
       tarefa: visualizarTarefaResolver,
     },
   },
-  // {
-  //   path: 'excluir/:id',
-  //   component: ExclusaoTarefaComponent,
-  //   resolve: {
-  //     tarefa: visualizarTarefaResolver,
-  //   },
-  // },
+  {
+    path: 'excluir/:id',
+    component: ExclusaoTarefaComponent,
+    resolve: {
+      tarefa: visualizarTarefaResolver,
+    },
+  },
 ];
