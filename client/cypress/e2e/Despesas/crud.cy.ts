@@ -39,7 +39,7 @@ describe('Processo de redirecionamento para listar Despesas', () => {
     cy.contains('Despesa Cypress');
   });
 
-  it('Deve editar um compromisso', () => {
+  it('Deve editar uma nova despesa', () => {
     cy.get('[data-cy=editar]').last().click();
 
     cy.get('[data-cy=descricao]').clear().type('Despesa Cypress Editado');
@@ -49,7 +49,7 @@ describe('Processo de redirecionamento para listar Despesas', () => {
     cy.contains('Despesa Cypress Editado');
   });
 
-  it('Deve excluir um compromisso', () => {
+  it('Deve excluir uma despesa', () => {
     cy.get('[data-cy=excluir]').last().click();
 
     cy.get('[data-cy=confirmar]').click();

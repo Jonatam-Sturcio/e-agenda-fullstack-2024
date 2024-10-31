@@ -38,6 +38,7 @@
           >
             <mat-option
               *ngFor="let opcao of opcoesPrioridade; index as i"
+              [attr.data-cy-select-option]="i"
               [value]="i"
             >
               {{ opcao }}
@@ -72,6 +73,7 @@
             extended
             (click)="adicionarItem(tituloItem.value); tituloItem.value = ''"
             type="button"
+            data-cy="confirmarItem"
             class="d-flex ms-auto"
           >
             <mat-icon>add_circle</mat-icon>
