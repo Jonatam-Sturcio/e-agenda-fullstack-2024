@@ -7,6 +7,7 @@ import {
 import { TarefaService } from './service/tarefas.service';
 import { ListagemTarefasComponent } from './listar/listagem-tarefas.component';
 import { CadastroTarefaComponent } from './cadastrar/cadastro-tarefa.component';
+import { EdicaoTarefaComponent } from './editar/edicao-tarefa.component';
 
 export const listagemTarefasResolver: ResolveFn<
   ListarTarefaViewModel[]
@@ -14,13 +15,13 @@ export const listagemTarefasResolver: ResolveFn<
   return inject(TarefaService).selecionarTodos();
 };
 
-// export const visualizarTarefaResolver: ResolveFn<VisualizarTarefaViewModel> = (
-//   route: ActivatedRouteSnapshot
-// ) => {
-//   const id = route.params['id'];
+export const visualizarTarefaResolver: ResolveFn<VisualizarTarefaViewModel> = (
+  route: ActivatedRouteSnapshot
+) => {
+  const id = route.params['id'];
 
-//   return inject(TarefaService).selecionarPorId(id);
-// };
+  return inject(TarefaService).selecionarPorId(id);
+};
 
 export const tarefasRoutes: Routes = [
   { path: '', redirectTo: 'listar', pathMatch: 'full' },
@@ -33,13 +34,13 @@ export const tarefasRoutes: Routes = [
     path: 'cadastrar',
     component: CadastroTarefaComponent,
   },
-  // {
-  //   path: 'editar/:id',
-  //   component: EdicaoTarefaComponent,
-  //   resolve: {
-  //     tarefa: visualizarTarefaResolver,
-  //   },
-  // },
+  {
+    path: 'editar/:id',
+    component: EdicaoTarefaComponent,
+    resolve: {
+      tarefa: visualizarTarefaResolver,
+    },
+  },
   // {
   //   path: 'excluir/:id',
   //   component: ExclusaoTarefaComponent,
