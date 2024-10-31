@@ -5,12 +5,13 @@ import {
   VisualizarTarefaViewModel,
 } from './models/tarefa.models';
 import { TarefaService } from './service/tarefas.service';
+import { ListagemTarefasComponent } from './listar/listagem-tarefas.component';
 
-// export const listagemTarefasResolver: ResolveFn<
-//   ListarTarefaViewModel[]
-// > = () => {
-//   return inject(TarefaService).selecionarTodos();
-// };
+export const listagemTarefasResolver: ResolveFn<
+  ListarTarefaViewModel[]
+> = () => {
+  return inject(TarefaService).selecionarTodos();
+};
 
 // export const visualizarTarefaResolver: ResolveFn<VisualizarTarefaViewModel> = (
 //   route: ActivatedRouteSnapshot
@@ -22,11 +23,11 @@ import { TarefaService } from './service/tarefas.service';
 
 export const tarefasRoutes: Routes = [
   { path: '', redirectTo: 'listar', pathMatch: 'full' },
-  // {
-  //   path: 'listar',
-  //   component: ListagemTarefasComponent,
-  //   resolve: { tarefas: listagemTarefasResolver },
-  // },
+  {
+    path: 'listar',
+    component: ListagemTarefasComponent,
+    resolve: { tarefas: listagemTarefasResolver },
+  },
   // {
   //   path: 'cadastrar',
   //   component: CadastroTarefaComponent,
