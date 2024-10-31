@@ -6,6 +6,7 @@ import {
 } from './models/tarefa.models';
 import { TarefaService } from './service/tarefas.service';
 import { ListagemTarefasComponent } from './listar/listagem-tarefas.component';
+import { CadastroTarefaComponent } from './cadastrar/cadastro-tarefa.component';
 
 export const listagemTarefasResolver: ResolveFn<
   ListarTarefaViewModel[]
@@ -28,10 +29,10 @@ export const tarefasRoutes: Routes = [
     component: ListagemTarefasComponent,
     resolve: { tarefas: listagemTarefasResolver },
   },
-  // {
-  //   path: 'cadastrar',
-  //   component: CadastroTarefaComponent,
-  // },
+  {
+    path: 'cadastrar',
+    component: CadastroTarefaComponent,
+  },
   // {
   //   path: 'editar/:id',
   //   component: EdicaoTarefaComponent,
