@@ -41,32 +41,62 @@ export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    loadComponent: () =>
+      import('./views/dashboard//dashboard.component').then(
+        (c) => DashboardComponent
+      ),
     canMatch: [authGuard],
   },
 
-  { path: 'registro', component: RegistroComponent, canMatch: [authUserGuard] },
-  { path: 'login', component: LoginComponent, canMatch: [authUserGuard] },
+  {
+    path: 'registro',
+    loadComponent: () =>
+      import('./core/auth/views/registro/registro.component').then(
+        (c) => c.RegistroComponent
+      ),
+    canMatch: [authUserGuard],
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./core/auth/views/login/login.component').then(
+        (c) => c.LoginComponent
+      ),
+    canMatch: [authUserGuard],
+  },
 
-  { path: 'contatos', children: contatosRoutes, canMatch: [authUserGuard] },
+  {
+    path: 'contatos',
+    loadChildren: () =>
+      import('./views/contatos/contatos.routes').then((m) => m.contatosRoutes),
+    canMatch: [authGuard],
+  },
   {
     path: 'compromissos',
-    children: compromissosRoutes,
-    canMatch: [authUserGuard],
+    loadChildren: () =>
+      import('./views/compromissos/compromissos.routes').then(
+        (m) => m.compromissosRoutes
+      ),
+    canMatch: [authGuard],
   },
   {
     path: 'categorias',
-    children: CategoriasRoutes,
-    canMatch: [authUserGuard],
+    loadChildren: () =>
+      import('./views/categorias/categorias.routes').then(
+        (m) => m.CategoriasRoutes
+      ),
+    canMatch: [authGuard],
   },
   {
     path: 'despesas',
-    children: DespesasRoutes,
-    canMatch: [authUserGuard],
+    loadChildren: () =>
+      import('./views/despesas/despesas.routes').then((m) => m.DespesasRoutes),
+    canMatch: [authGuard],
   },
   {
     path: 'tarefas',
-    children: tarefasRoutes,
-    canMatch: [authUserGuard],
+    loadChildren: () =>
+      import('./views/tarefas/tarefas.routes').then((m) => m.tarefasRoutes),
+    canMatch: [authGuard],
   },
 ];
